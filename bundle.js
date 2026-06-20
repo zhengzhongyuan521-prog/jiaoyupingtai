@@ -3763,6 +3763,12 @@ document.addEventListener('DOMContentLoaded', () => {
   setupNav();
   // 如果 URL 带 ?payment_success=lifetime，说明用户刚付完款 → 自动解锁会员
   autoUnlockFromPayment();
+  // URL 带 ?forceLogin 或 ?logout → 强制显示登录页（用于测试）
+  const params = new URLSearchParams(location.search);
+  if (params.get('forceLogin') !== null || params.get('logout') !== null) {
+    STATE.user = null;
+    saveStore(STATE);
+  }
   if (STATE.user) enterApp();
 });
 // 暴露关键函数到 window（便于调试）
