@@ -1,0 +1,44 @@
+# 依赖目录
+node_modules/
+vendor/
+.venv/
+__pycache__/
+*.pyc
+
+# 系统/编辑器
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 环境与密钥
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+
+# 日志与临时
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache/
+tmp/
+temp/
+
+# 打包文件（不入 git，单独交付）
+*.zip
+*.tar.gz
+*.tgz
+
+# 大型资源
+*.psd
+*.ai
+*.sketch
+*.fig
+*.mp4
+*.mov

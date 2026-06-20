@@ -81,6 +81,19 @@
   <!-- 登录/注册页面 -->
   <main class="auth-screen" id="authScreen">
     <div class="auth-bg">
+      <div class="light-bar"></div>
+      <div class="light-bar light-bar-2"></div>
+      <div class="stars"></div>
+      <div class="shooting-star shooting-star-1"></div>
+      <div class="shooting-star shooting-star-2"></div>
+      <div class="shooting-star shooting-star-3"></div>
+      <div class="shooting-star shooting-star-4"></div>
+      <div class="particle particle-1"></div>
+      <div class="particle particle-2"></div>
+      <div class="particle particle-3"></div>
+      <div class="particle particle-4"></div>
+      <div class="particle particle-5"></div>
+      <div class="particle particle-6"></div>
       <div class="blob blob-1"></div>
       <div class="blob blob-2"></div>
       <div class="blob blob-3"></div>
@@ -139,35 +152,24 @@
   <main class="app-root" id="appRoot" hidden>
     <!-- 首页视图 -->
     <section class="view" id="view-home">
-          <div class="hero" style="padding:44px 40px;border-radius:24px;box-shadow:0 8px 32px rgba(0,0,0,.1);background:radial-gradient(ellipse at 8% 20%, #fef9c3 0%, transparent 55%), radial-gradient(ellipse at 92% 80%, #ede9fe 0%, transparent 55%), radial-gradient(ellipse at 55% 55%, rgba(251,191,36,0.18) 0%, transparent 65%), linear-gradient(125deg, #fff 0%, #fef3e0 55%, #fef9c3 100%);position:relative;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center;">
-        <div style="position:absolute;right:-40px;top:-30px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #a78bfa 0%, #7c3aed 65%, #4c1d95 100%);opacity:0.55;box-shadow:0 20px 60px rgba(124,58,237,0.35);z-index:0;"></div>
-        <div style="position:absolute;right:180px;bottom:20px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #fbbf24 0%, #f59e0b 70%, #b45309 100%);opacity:0.55;box-shadow:0 15px 40px rgba(251,191,36,0.35);z-index:0;"></div>
-        <div style="position:absolute;left:48%;top:60%;width:55px;height:55px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #60a5fa 0%, #3b82f6 65%, #1e3a8a 100%);opacity:0.45;box-shadow:0 10px 25px rgba(59,130,246,0.35);z-index:0;"></div>
-        <div style="position:absolute;top:20px;right:40px;font-size:16px;color:#f59e0b;opacity:0.45;letter-spacing:20px;z-index:0;">✦ ✧ ✦ ✧</div>
-      <div style="padding:44px 40px;border-radius:24px;box-shadow:0 8px 32px rgba(0,0,0,.1);background:radial-gradient(ellipse at 8% 20%, #fef9c3 0%, transparent 55%),radial-gradient(ellipse at 92% 80%, #ede9fe 0%, transparent 55%),radial-gradient(ellipse at 55% 55%, rgba(251,191,36,0.18) 0%, transparent 65%),linear-gradient(125deg, #fff 0%, #fef3e0 55%, #fef9c3 100%);position:relative;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center;">
-        <div style="position:absolute;right:-40px;top:-30px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #a78bfa 0%, #7c3aed 65%, #4c1d95 100%);opacity:0.55;box-shadow:0 20px 60px rgba(124,58,237,0.35);z-index:0;"></div>
-        <div style="position:absolute;right:180px;bottom:20px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #fbbf24 0%, #f59e0b 70%, #b45309 100%);opacity:0.55;box-shadow:0 15px 40px rgba(251,191,36,0.35);z-index:0;"></div>
-        <div style="position:absolute;left:48%;top:60%;width:55px;height:55px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #60a5fa 0%, #3b82f6 65%, #1e3a8a 100%);opacity:0.45;box-shadow:0 10px 25px rgba(59,130,246,0.35);z-index:0;"></div>
-        <div style="position:absolute;top:20px;right:40px;font-size:16px;color:#f59e0b;opacity:0.45;letter-spacing:20px;z-index:0;">✦ ✧ ✦ ✧</div>
-
-        <div style="position:relative;z-index:1;">
-          <span style="display:inline-block;font-size:14px;color:#78350f;background:#fff;padding:6px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.08);margin-bottom:18px;">✨ 欢迎回来，<span id="heroUserName">朋友</span></span>
-          <h1 style="font-size:44px;line-height:1.15;margin:0 0 14px;font-weight:800;letter-spacing:-0.01em;">用<span style="background:linear-gradient(90deg,#7c3aed,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;">沉浸式</span>的方式<br/>掌握一门新语言。</h1>
-          <p style="color:#78350f;margin:0 0 22px;font-size:16px;">英语 · 日语 · 韩语 · 西班牙语 · 法语 — 分级课程、互动练习、个性化路径。A1/A2 免费学，升级终身会员解锁全部 30 门高级课程。</p>
-          <div style="display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;">
-            <button style="padding:12px 22px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#e8780f);color:#fff;border:none;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;" data-route="courses">浏览课程 →</button>
-            <button style="padding:12px 22px;border-radius:12px;background:#fff;color:#7c3aed;border:1.5px solid #ede9fe;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;" data-route="pricing">立即升级会员</button>
-            <button style="padding:12px 22px;border-radius:12px;background:#fff;color:#78350f;border:1.5px solid #fde68a;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;" data-route="learn">继续学习</button>
+      <div class="hero">
+        <div class="hero-text">
+          <span class="eyebrow">✨ 欢迎回来，<span id="heroUserName">朋友</span></span>
+          <h1 class="hero-title">用<span class="accent">沉浸式</span>的方式<br/>掌握一门新语言。</h1>
+          <p class="hero-desc">英语 · 日语 · 韩语 · 西班牙语 · 法语 — 分级课程、互动练习、个性化路径。A1/A2 免费学，升级终身会员解锁全部 30 门高级课程。</p>
+          <div class="hero-actions">
+            <button class="btn-primary" data-route="courses">浏览课程 →</button>
+            <button class="btn-secondary" data-route="pricing" style="background:linear-gradient(135deg,#7c3aed,#e8780f);color:#fff;border:none;">立即升级会员</button>
+            <button class="btn-secondary" data-route="learn">继续学习</button>
           </div>
-          <div id="heroStats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;"></div>
+          <div class="hero-stats" id="heroStats"></div>
         </div>
-
-        <div style="position:relative;z-index:1;min-height:340px;">
-          <div style="position:absolute;top:-10px;left:22%;width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;color:#fff;box-shadow:0 18px 32px rgba(0,0,0,.18),inset -8px -10px 20px rgba(0,0,0,.22),inset 8px 8px 18px rgba(255,255,255,.25);border:2px solid rgba(255,255,255,0.35);background:linear-gradient(135deg,#60a5fa,#1e3a8a);">EN</div>
-          <div style="position:absolute;top:45%;left:0%;width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;color:#fff;box-shadow:0 18px 32px rgba(0,0,0,.18),inset -8px -10px 20px rgba(0,0,0,.22),inset 8px 8px 18px rgba(255,255,255,.25);border:2px solid rgba(255,255,255,0.35);background:linear-gradient(135deg,#f87171,#991b1b);animation:floaty 5s ease-in-out infinite .5s;">漢</div>
-          <div style="position:absolute;top:55%;right:6%;width:78px;height:78px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:#fff;box-shadow:0 18px 32px rgba(0,0,0,.18),inset -8px -10px 20px rgba(0,0,0,.22),inset 8px 8px 18px rgba(255,255,255,.25);border:2px solid rgba(255,255,255,0.35);background:linear-gradient(135deg,#a78bfa,#4c1d95);animation:floaty 5s ease-in-out infinite 1s;">한</div>
-          <div style="position:absolute;top:-5px;right:0%;width:85px;height:85px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;color:#fff;box-shadow:0 18px 32px rgba(0,0,0,.18),inset -8px -10px 20px rgba(0,0,0,.22),inset 8px 8px 18px rgba(255,255,255,.25);border:2px solid rgba(255,255,255,0.35);background:linear-gradient(135deg,#fb923c,#9a3412);animation:floaty 5s ease-in-out infinite 1.5s;">ES</div>
-          <div style="position:absolute;top:25%;left:48%;width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;color:#fff;box-shadow:0 18px 32px rgba(0,0,0,.18),inset -8px -10px 20px rgba(0,0,0,.22),inset 8px 8px 18px rgba(255,255,255,.25);border:2px solid rgba(255,255,255,0.35);background:linear-gradient(135deg,#38bdf8,#0c4a6e);animation:floaty 5s ease-in-out infinite 2s;">FR</div>
+        <div class="hero-visual">
+          <div class="orb orb-en">EN</div>
+          <div class="orb orb-ja">漢</div>
+          <div class="orb orb-ko">한</div>
+          <div class="orb orb-es">ES</div>
+          <div class="orb orb-fr">FR</div>
         </div>
       </div>
 
@@ -482,6 +484,5 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 <script src="bundle.js?v=1718500900000"></script>
-      <style>@keyframes floaty{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-14px) rotate(2deg);}}</style>
 </body>
 </html>
