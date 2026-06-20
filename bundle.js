@@ -3769,7 +3769,17 @@ document.addEventListener('DOMContentLoaded', () => {
     STATE.user = null;
     saveStore(STATE);
   }
-  if (STATE.user) enterApp();
+  // 默认显示登录页（即使之前登录过，也先停留在登录页让用户点击"继续"）
+  // 这样打开网站永远先看到深空宇宙背景
+  if (STATE.user) {
+    // 有用户数据 → 显示"继续使用"提示（不立即跳首页）
+    const authScreen = document.getElementById('authScreen');
+    if (authScreen) authScreen.hidden = false;
+    const appRoot = document.getElementById('appRoot');
+    if (appRoot) appRoot.hidden = true;
+    const topbar = document.getElementById('topbar');
+    if (topbar) topbar.hidden = true;
+  }
 });
 // 暴露关键函数到 window（便于调试）
 window.LV = { go, enterApp, toast, STATE };
