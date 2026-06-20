@@ -1,5 +1,5 @@
 /* LinguaVerse Service Worker — 离线缓存核心资源 */
-const VERSION = 'lv-v1.0.0';
+const VERSION = 'lv-v9.0.0';
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
@@ -30,22 +30,20 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-/* 拦截请求：优先缓存，回退网络，最后返回离线页面 */
+/* 拦截请求：网络优先（保证拿到最新版本），失败回退缓存 */
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  /* 同源核心资源：缓存优先 */
+  /* 同源核心资源：网络优先，缓存兜底 */
   if (url.origin === self.location.origin) {
     event.respondWith(
-      caches.match(req).then((cached) => {
-        return cached || fetch(req).then((networkRes) => {
-          const copy = networkRes.clone();
-          caches.open(RUNTIME_CACHE).then((cache) => cache.put(req, copy));
-          return networkRes;
-        }).catch(() => caches.match('./index.html'));
-      })
+      fetch(req).then((networkRes) => {
+        const copy = networkRes.clone();
+        caches.open(RUNTIME_CACHE).then((cache) => cache.put(req, copy));
+        return networkRes;
+      }).catch(() => caches.match(req).then((cached) => cached || caches.match('./index.html')))
     );
     return;
   }
