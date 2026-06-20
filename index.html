@@ -51,15 +51,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,600&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* 强制深色背景 —— 兜底方案，无论外部 CSS 是否加载都生效 */
-    html { background-color: #050214; min-height: 100%; }
-    body { background-color: #050214; }
-    .app-root { background-color: #050214; }
-    .home-hero { background-color: #050214; background-image: linear-gradient(135deg, #050214 0%, #1a0b3e 50%, #0a0a2e 100%); }
-  </style>
 </head>
-<body style="background-color: #050214; margin: 0; min-height: 100vh;">
+<body>
   <!-- 顶部导航栏 -->
   <header class="topbar" id="topbar" hidden>
     <div class="topbar-inner">
@@ -86,7 +79,7 @@
   </header>
 
   <!-- 登录/注册页面 -->
-  <main class="auth-screen" id="authScreen" style="background-color: #050214; min-height: 100vh;">
+  <main class="auth-screen" id="authScreen">
     <div class="auth-bg">
       <div class="light-bar"></div>
       <div class="light-bar light-bar-2"></div>
