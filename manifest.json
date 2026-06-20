@@ -1,0 +1,23 @@
+{
+  "name": "LinguaVerse · 多语种沉浸式学习平台",
+  "short_name": "LinguaVerse",
+  "description": "英语 · 日本語 · 한국어 · Español · Français——分级课程、互动练习、社区激励，尽在指尖。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f0a1e",
+  "theme_color": "#7c3aed",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["education", "lifestyle", "reference"],
+  "icons": [
+    { "src": "icon.svg",   "sizes": "any",      "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png",    "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png",    "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "继续学习", "short_name": "学习", "description": "打开学习中心继续你的课程", "url": "./index.html?route=learn", "icons": [{ "src": "icon.svg", "sizes": "any" }] },
+    { "name": "每日单词", "short_name": "单词", "description": "开始今日单词记忆练习", "url": "./index.html?route=learn&module=vocab", "icons": [{ "src": "icon.svg", "sizes": "any" }] }
+  ]
+}

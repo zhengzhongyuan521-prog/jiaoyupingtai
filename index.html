@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LinguaVerse" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#7c3aed" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#7c3aed" media="(prefers-color-scheme: light)" />
+
+  <!-- SEO -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="LinguaVerse" />
+  <meta name="keywords" content="英语学习,日语学习,韩语学习,西班牙语,法语学习,多语种,在线教育,语言课程,词汇记忆,语法练习,口语练习,听力训练" />
+  <meta name="description" content="LinguaVerse · 多语种沉浸式学习平台。英语、日语、韩语、西班牙语、法语——分级课程、互动练习、AI辅助、社区激励，尽在指尖。免费试学，付费解锁高级课程。" />
+  <title>LinguaVerse · 多语种沉浸式学习平台</title>
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LinguaVerse · 多语种沉浸式学习平台" />
+  <meta property="og:description" content="英语 · 日本語 · 한국어 · Español · Français——分级课程、互动练习、社区激励，终身会员仅 ¥299。" />
+  <meta property="og:image" content="https://www.linguaverse.app/og-image.png" />
+  <meta property="og:url" content="https://www.linguaverse.app" />
+  <meta property="og:site_name" content="LinguaVerse" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LinguaVerse · 多语种沉浸式学习平台" />
+  <meta name="twitter:description" content="5种语言 · 30门课程 · 分级体系——沉浸式语言学习，从这里开始。" />
+  <meta name="twitter:image" content="https://www.linguaverse.app/og-image.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.linguaverse.app" />
+
+  <!-- Stripe 支付 SDK（用于自动付款 + 自动解锁会员） -->
+  <script async src="https://js.stripe.com/v3/"></script>
+
+  <!-- Google Analytics (部署时替换 G-XXXXXXXXXX) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR-GA-ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YOUR-GA-ID', { 'debug_mode': true });
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,600&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 顶部导航栏 -->
+  <header class="topbar" id="topbar" hidden>
+    <div class="topbar-inner">
+      <a class="brand" data-route="home">
+        <span class="brand-mark">🌍</span>
+        <span class="brand-name">LinguaVerse</span>
+      </a>
+      <nav class="topnav">
+        <a class="nav-link" data-route="home">首页</a>
+        <a class="nav-link" data-route="courses">课程</a>
+        <a class="nav-link" data-route="learn">学习中心</a>
+        <a class="nav-link" data-route="community">社区</a>
+        <a class="nav-link" data-route="achievements">成就</a>
+        <a class="nav-link" data-route="pricing">会员</a>
+        <a class="nav-link" data-route="profile">我的</a>
+      </nav>
+      <div class="userchip" id="userchip">
+        <span class="xp-badge" id="xpBadge">0 XP</span>
+        <span class="level-badge" id="levelBadge">Lv.1</span>
+        <div class="avatar" id="avatar">学</div>
+        <button class="btn-ghost" id="logoutBtn" title="退出登录">退出</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 登录/注册页面 -->
+  <main class="auth-screen" id="authScreen">
+    <div class="auth-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+    <div class="auth-card">
+      <div class="auth-hero">
+        <span class="auth-logo">🌍</span>
+        <h1 class="auth-title">LinguaVerse</h1>
+        <p class="auth-sub">开启你的多语种沉浸式学习之旅</p>
+        <div class="lang-tags">
+          <span>English</span><span>日本語</span><span>한국어</span><span>Español</span><span>Français</span>
+        </div>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">登录</button>
+        <button class="auth-tab" data-tab="register">注册</button>
+      </div>
+
+      <form class="auth-form" id="loginForm">
+        <label>用户名 / 邮箱</label>
+        <input type="text" id="loginUser" placeholder="请输入用户名" required />
+        <label>密码</label>
+        <input type="password" id="loginPass" placeholder="请输入密码" required />
+        <button type="submit" class="btn-primary">登录</button>
+        <p class="auth-tip">提示：使用 localStorage 模拟账号系统，数据仅保存在您的浏览器。</p>
+      </form>
+
+      <form class="auth-form hidden" id="registerForm">
+        <label>昵称</label>
+        <input type="text" id="regName" placeholder="给自己起个名字" required />
+        <label>用户名</label>
+        <input type="text" id="regUser" placeholder="登录用的用户名" required />
+        <label>密码</label>
+        <input type="password" id="regPass" placeholder="至少 4 位" required minlength="4" />
+        <label>感兴趣的语言</label>
+        <div class="lang-choice" id="langChoice">
+          <label class="lang-chip"><input type="checkbox" value="en" checked />英语 English</label>
+          <label class="lang-chip"><input type="checkbox" value="ja" />日本語</label>
+          <label class="lang-chip"><input type="checkbox" value="ko" />한국어</label>
+          <label class="lang-chip"><input type="checkbox" value="es" />Español</label>
+          <label class="lang-chip"><input type="checkbox" value="fr" />Français</label>
+        </div>
+        <label>当前水平</label>
+        <select id="regLevel">
+          <option value="beginner">零基础 · 初学者</option>
+          <option value="elementary">入门 · 会一些日常用语</option>
+          <option value="intermediate">中级 · 可简单交流</option>
+          <option value="advanced">高级 · 能流利表达</option>
+        </select>
+        <button type="submit" class="btn-primary">创建账号</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- 主应用视图容器 -->
+  <main class="app-root" id="appRoot" hidden>
+    <!-- 首页视图 -->
+    <section class="view" id="view-home">
+      <div class="hero">
+        <div class="hero-text">
+          <span class="eyebrow">✨ 欢迎回来，<span id="heroUserName">朋友</span></span>
+          <h1 class="hero-title">用<span class="accent">沉浸式</span>的方式<br/>掌握一门新语言。</h1>
+          <p class="hero-desc">英语 · 日语 · 韩语 · 西班牙语 · 法语 — 分级课程、互动练习、个性化路径。A1/A2 免费学，升级终身会员解锁全部 30 门高级课程。</p>
+          <div class="hero-actions">
+            <button class="btn-primary" data-route="courses">浏览课程 →</button>
+            <button class="btn-secondary" data-route="pricing" style="background:linear-gradient(135deg,#7c3aed,#e8780f);color:#fff;border:none;">立即升级会员</button>
+            <button class="btn-secondary" data-route="learn">继续学习</button>
+          </div>
+          <div class="hero-stats" id="heroStats"></div>
+        </div>
+        <div class="hero-visual">
+          <div class="orb orb-en">EN</div>
+          <div class="orb orb-ja">漢</div>
+          <div class="orb orb-ko">한</div>
+          <div class="orb orb-es">ES</div>
+          <div class="orb orb-fr">FR</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <h2 class="section-title">为你推荐</h2>
+          <span class="section-sub">基于你的水平与学习偏好生成的个性化路径</span>
+        </div>
+        <div class="rec-grid" id="recGrid"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <h2 class="section-title">今日学习目标</h2>
+          <span class="section-sub">完成每日任务，赢取经验值</span>
+        </div>
+        <div class="daily-grid" id="dailyGrid"></div>
+      </div>
+    </section>
+
+    <!-- 课程视图 -->
+    <section class="view" id="view-courses">
+      <div class="page-head">
+        <h2 class="page-title">分级课程体系</h2>
+        <p class="page-sub">从 A1 到 C2，每一步都为你设计。选择语言与级别，开启你的课程。</p>
+      </div>
+      <div class="course-filter">
+        <div class="filter-group" id="langFilter"></div>
+        <div class="filter-group" id="levelFilter"></div>
+      </div>
+      <div class="course-grid" id="courseGrid"></div>
+    </section>
+
+    <!-- 学习中心视图 -->
+    <section class="view" id="view-learn">
+      <div class="page-head">
+        <h2 class="page-title">互动式学习模块</h2>
+        <p class="page-sub">单词记忆 · 语法练习 · 口语跟读 · 听力训练——四种核心能力齐头并进。</p>
+      </div>
+
+      <div class="module-picker">
+        <button class="module-card active" data-module="vocab">
+          <span class="module-icon">📖</span>
+          <span class="module-name">单词记忆</span>
+          <span class="module-desc">闪卡 + 间隔重复</span>
+        </button>
+        <button class="module-card" data-module="grammar">
+          <span class="module-icon">✍️</span>
+          <span class="module-name">语法练习</span>
+          <span class="module-desc">规则讲解 + 习题</span>
+        </button>
+        <button class="module-card" data-module="speaking">
+          <span class="module-icon">🎤</span>
+          <span class="module-name">口语跟读</span>
+          <span class="module-desc">朗读 + 发音评估</span>
+        </button>
+        <button class="module-card" data-module="listening">
+          <span class="module-icon">🎧</span>
+          <span class="module-name">听力训练</span>
+          <span class="module-desc">对话 + 填空</span>
+        </button>
+      </div>
+
+      <div class="module-settings" id="moduleSettings"></div>
+      <div class="module-area" id="moduleArea"></div>
+    </section>
+
+    <!-- 社区视图 -->
+    <section class="view" id="view-community">
+      <div class="page-head">
+        <h2 class="page-title">学习社区</h2>
+        <p class="page-sub">和全球语言学习者一起分享、讨论、互相鼓励。</p>
+      </div>
+
+      <div class="community-layout">
+        <div class="community-main">
+          <form class="post-form" id="postForm">
+            <div class="post-form-head">
+              <input type="text" id="postTitle" placeholder="标题：你今天学到了什么？" required />
+              <select id="postLang">
+                <option value="all">🌐 综合</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="ko">🇰🇷 한국어</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="fr">🇫🇷 Français</option>
+              </select>
+            </div>
+            <textarea id="postContent" rows="3" placeholder="写下你的感悟、问题或例句..." required></textarea>
+            <div class="post-form-actions">
+              <span class="hint">💡 友善 · 真实 · 尊重多元</span>
+              <button type="submit" class="btn-primary">发布</button>
+            </div>
+          </form>
+
+          <div class="feed-filter">
+            <button class="chip-btn active" data-feed="latest">最新</button>
+            <button class="chip-btn" data-feed="hot">热门</button>
+            <button class="chip-btn" data-feed="mine">我发布的</button>
+          </div>
+
+          <div class="feed" id="feed"></div>
+        </div>
+
+        <aside class="community-side">
+          <div class="side-card">
+            <h3>本周排行榜</h3>
+            <ol class="leaderboard" id="leaderboard"></ol>
+          </div>
+          <div class="side-card">
+            <h3>热门话题</h3>
+            <div class="topics">
+              <span class="chip">#每日一句</span>
+              <span class="chip">#语法困惑</span>
+              <span class="chip">#发音练习</span>
+              <span class="chip">#旅行日语</span>
+              <span class="chip">#K-pop 韩语</span>
+              <span class="chip">#零基础</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 成就视图 -->
+    <section class="view" id="view-achievements">
+      <div class="page-head">
+        <h2 class="page-title">成就与激励</h2>
+        <p class="page-sub">每一次坚持都值得被记录。解锁徽章，提升等级，感受进步的喜悦。</p>
+      </div>
+      <div class="ach-stats" id="achStats"></div>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </section>
+
+    <!-- 个人中心视图 -->
+    <section class="view" id="view-profile">
+      <div class="profile-hero">
+        <div class="profile-avatar" id="profileAvatar">学</div>
+        <div class="profile-info">
+          <h2 id="profileName">学习者</h2>
+          <p id="profileLevel">零基础</p>
+          <div class="profile-meta" id="profileMeta"></div>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <h3>学习进度总览</h3>
+        <div class="progress-grid" id="progressGrid"></div>
+      </div>
+
+      <div class="progress-section">
+        <h3>最近活动</h3>
+        <div class="activity-list" id="activityList"></div>
+      </div>
+
+      <div class="progress-section">
+        <h3>账号设置</h3>
+        <div class="settings-row">
+          <label>昵称</label>
+          <input type="text" id="nicknameInput" />
+          <button class="btn-secondary" id="saveNickname">保存</button>
+        </div>
+        <div class="settings-row">
+          <label>感兴趣的语言</label>
+          <div class="lang-choice" id="prefLangChoice"></div>
+        </div>
+        <div class="settings-row">
+          <label>每日学习目标 (分钟)</label>
+          <input type="number" id="dailyGoal" min="5" max="240" step="5" />
+          <button class="btn-secondary" id="saveGoal">保存</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 会员/定价视图 -->
+    <section class="view" id="view-pricing">
+      <div class="pricing-hero">
+        <span class="pricing-crown">👑</span>
+        <h1 class="pricing-title">从"学语言"到"会语言"，只差这一步</h1>
+        <p class="pricing-sub">A1/A2 全部免费学。升级终身会员，解锁 30 门高级课程，从此你的语言能力不再被限制。</p>
+        <div class="pricing-compare" id="pricingCompare">
+          <div class="compare-free">
+            <h4>免费试学</h4>
+            <ul>
+              <li>✅ 5 种语言 · A1 入门</li>
+              <li>✅ 5 种语言 · A2 初级</li>
+              <li>✅ 基础单词记忆</li>
+              <li>✅ 社区交流</li>
+              <li>❌ B1 中级 · 日常对话</li>
+              <li>❌ B2 中高级 · 商务写作</li>
+              <li>❌ C1~C2 · 母语级精通</li>
+            </ul>
+          </div>
+          <div class="compare-vip">
+            <span class="vip-badge">🔥 80% 用户选择</span>
+            <h4>终身会员 · 一次购买，永久享用</h4>
+            <ul>
+              <li>✅ 全部 30 门课程</li>
+              <li>✅ A1~C2 全部级别</li>
+              <li>✅ 深度语法专项训练</li>
+              <li>✅ 100+ 条听力对话</li>
+              <li>✅ 个性化学习路径</li>
+              <li>✅ 终身免费内容更新</li>
+              <li>✅ 7 天无理由退款</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-plans">
+        <div class="plan-card" id="planFree">
+          <div class="plan-header">
+            <h3>免费试学</h3>
+            <div class="plan-price"><span class="price-amount">¥0</span><span class="price-period">/永久</span></div>
+          </div>
+          <ul class="plan-features">
+            <li>A1/A2 基础课程</li>
+            <li>基础单词练习</li>
+            <li>社区交流</li>
+          </ul>
+          <button class="btn-secondary plan-btn" disabled>当前方案</button>
+        </div>
+
+        <div class="plan-card featured" id="planLifetime">
+          <div class="plan-header">
+            <h3>终身会员</h3>
+            <div class="plan-tag">⏰ 限时 3 折 · 一次买断 · 再也不用花钱</div>
+            <div class="plan-price"><span class="price-amount">¥299</span><span class="price-period">/终身</span></div>
+            <div class="plan-original">原价 ¥999 · 省 ¥700</div>
+          </div>
+          <ul class="plan-features">
+            <li>✅ 全部 30 门课程（英语/日语/韩语/西语/法语）</li>
+            <li>✅ A1~C2 全部级别（入门→精通）</li>
+            <li>✅ 深度语法专项课程</li>
+            <li>✅ 全部听力对话训练（100+ 条）</li>
+            <li>✅ 专属个性化学习路径</li>
+            <li>✅ 终身内容免费更新 · 后续新课程全部免费</li>
+            <li>✅ 全平台通用（手机 / 平板 / 电脑）</li>
+            <li>✅ 7 天无理由退款保障</li>
+          </ul>
+          <button class="btn-primary plan-btn" id="btnUpgrade">立即解锁 ¥299 →</button>
+          <p style="font-size:12px;color:#6b6b6b;margin:8px 0 0;line-height:1.5;">💡 平均每门课程不到 ¥10，一杯奶茶钱学一门语言</p>
+        </div>
+
+        <div class="plan-card" id="planMonthly">
+          <div class="plan-header">
+            <h3>月费会员</h3>
+            <div class="plan-price"><span class="price-amount">¥29</span><span class="price-period">/月</span></div>
+            <div class="plan-original">适合先体验 1~2 个月</div>
+          </div>
+          <ul class="plan-features">
+            <li>✅ 全部 30 门课程</li>
+            <li>✅ 全部听力对话</li>
+            <li>✅ 个性化学习路径</li>
+            <li>⚠️ 按月付费，较贵</li>
+          </ul>
+          <button class="btn-secondary plan-btn" id="btnMonthly">月费 ¥29/月</button>
+          <p style="font-size:12px;color:#6b6b6b;margin:8px 0 0;line-height:1.5;">💡 10 个月以上不如直接买终身会员</p>
+        </div>
+      </div>
+
+      <div class="pricing-faq">
+        <h3>❓ 你可能想问的</h3>
+        <details class="faq-item">
+          <summary>💰 支持哪些付款方式？</summary>
+          <p>支持支付宝、微信支付、银行卡。付款后发邮件到 support@linguaverse.app 领取激活码，输入即可解锁。</p>
+        </details>
+        <details class="faq-item">
+          <summary>🔄 可以退款吗？</summary>
+          <p>7 天内如有任何不满，无理由全额退款。</p>
+        </details>
+        <details class="faq-item">
+          <summary>📈 以后出新课程还要再付钱吗？</summary>
+          <p>不用！终身会员包含未来所有新课程，永久免费更新。</p>
+        </details>
+        <details class="faq-item">
+          <summary>🎯 我零基础，适合吗？</summary>
+          <p>完全适合！系统会根据你的水平自动匹配课程，A1 学起，循序渐进到 C2 精通。</p>
+        </details>
+        <details class="faq-item">
+          <summary>📱 手机能学吗？</summary>
+          <p>可以！已经为手机做了优化，iPhone 还可以添加到主屏作为独立 App 使用。</p>
+        </details>
+        <details class="faq-item">
+          <summary>⏰ 有效期多久？</summary>
+          <p>终身会员永久有效！一次购买，终身学习。月费会员按 30 天计。</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast 提示 -->
+  <div class="toast" id="toast" hidden></div>
+
+  <!-- 课程详情弹窗 -->
+  <div class="modal" id="courseModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close>×</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+<script>
+/* 注册 Service Worker — 让 iPhone 可离线访问 */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js')
+      .then(function (reg) { console.log('LinguaVerse SW registered, scope:', reg.scope); })
+      .catch(function (err) { console.warn('LinguaVerse SW registration failed:', err); });
+  });
+}
+</script>
+<script src="bundle.js?v=1718500900000"></script>
+</body>
+</html>
